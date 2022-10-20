@@ -51,7 +51,6 @@ pipeline {
                  sh 'docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest'
                  sh 'docker run --rm --env-file /tmp/env --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest'
             }
-      
       stage('Deploy'){
             steps {
                  sh 'sed -i "s/<TAG>/${IMAGE_TAG}-${BUILD_NUMBER}/" deployment.yml'
@@ -67,6 +66,6 @@ pipeline {
                  sh 'docker pull registry.fortidevsec.forticloud.com/fdevsec_dast:latest'
                  sh 'docker run --rm --env-file /tmp/env --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_dast:latest'
             }
-        /
+        }
     }
 }
